@@ -1,3 +1,7 @@
+satopilot - Version 0.8.12 (2022-04-28)
+========================
+ * NEOS 20: improved reliability
+
 sunnypilot - Version 0.8.12-4 (2022-04-09)
 ========================
 * NEW❗: Roll Compensation and SteerRatio fix from comma's 0.8.13
