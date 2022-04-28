@@ -34,7 +34,7 @@ X_EGO_OBSTACLE_COST = 3.
 X_EGO_COST = 0.
 V_EGO_COST = 0.
 A_EGO_COST = 0.
-J_EGO_COST = 2.5
+J_EGO_COST = 4.0
 A_CHANGE_COST = .25
 DANGER_ZONE_COST = 100.
 CRASH_DISTANCE = .5
@@ -52,7 +52,7 @@ T_DIFFS = np.diff(T_IDXS, prepend=[0.])
 MIN_ACCEL = -3.5
 T_FOLLOW = 1.45
 COMFORT_BRAKE = 2.5
-STOP_DISTANCE = 5.5
+STOP_DISTANCE = 5.0
 
 def get_stopped_equivalence_factor(v_lead, v_ego, tr=T_FOLLOW):
   # KRKeegan this offset rapidly decreases the following distance when the lead pulls
@@ -252,12 +252,14 @@ class LongitudinalMpc():
     # do not apply to deceleration
     j_ego_v_ego = 1
     a_change_v_ego = 1
+    a_change = 1
+    j_ego = 1
     if (v_lead0 - v_ego >= 0) and (v_lead1 - v_ego >= 0):
       j_ego_v_ego = interp(v_ego, v_ego_bps, [.01, 1.])
       a_change_v_ego = interp(v_ego, v_ego_bps, [.01, 1.])
-    # Select the appropriate min/max of the options
-    j_ego = min(j_ego_tf, j_ego_v_ego)
-    a_change = min(a_change_tf, a_change_v_ego)
+      # Select the appropriate min/max of the options
+      j_ego = min(j_ego_tf, j_ego_v_ego)
+      a_change = min(a_change_tf, a_change_v_ego)
     return a_change, j_ego, d_zone_tf
 
   def set_weights_for_lead_policy(self, prev_accel_constraint=True, v_lead0=0, v_lead1=0):
