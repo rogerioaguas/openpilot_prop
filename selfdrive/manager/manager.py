@@ -54,7 +54,7 @@ def manager_init():
     ("GpxDeleteIfUploaded", "1"),
     ("HasAcceptedTerms", "0"),
     ("HandsOnWheelMonitoring", "0"),
-    ("MaxTimeOffroad", "30"),
+    ("MaxTimeOffroad", "12"),
     ("NoOffroadFix", "0"),
     ("OnroadScreenOff", "0"),
     ("OnroadScreenOffBrightness", "50"),
