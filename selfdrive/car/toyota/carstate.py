@@ -12,6 +12,8 @@ from selfdrive.swaglog import cloudlog
 from common.realtime import DT_CTRL, sec_since_boot
 from common.params import Params
 
+T_FACTOR = 1.033
+
 class CarState(CarStateBase):
   def __init__(self, CP):
     super().__init__(CP)
@@ -204,7 +206,7 @@ class CarState(CarStateBase):
       ret.cruiseState.speed = cp.vl["DSU_CRUISE"]["SET_SPEED"] * CV.KPH_TO_MS
     else:
       ret.cruiseState.available = cp.vl["PCM_CRUISE_2"]["MAIN_ON"] != 0
-      ret.cruiseState.speed = cp.vl["PCM_CRUISE_2"]["SET_SPEED"] * CV.KPH_TO_MS
+      ret.cruiseState.speed = cp.vl["PCM_CRUISE_2"]["SET_SPEED"] * T_FACTOR * CV.KPH_TO_MS
 
     if self.CP.carFingerprint in TSS2_CAR:
       self.acc_type = 1
