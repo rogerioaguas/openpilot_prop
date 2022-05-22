@@ -12,6 +12,8 @@ from selfdrive.swaglog import cloudlog
 from common.realtime import DT_CTRL, sec_since_boot
 from common.params import Params
 
+T_FACTOR = 1.033
+
 class CarState(CarStateBase):
   def __init__(self, CP):
     super().__init__(CP)
@@ -204,7 +206,7 @@ class CarState(CarStateBase):
       ret.cruiseState.speed = cp.vl["DSU_CRUISE"]["SET_SPEED"] * CV.KPH_TO_MS
     else:
       ret.cruiseState.available = cp.vl["PCM_CRUISE_2"]["MAIN_ON"] != 0
-      ret.cruiseState.speed = cp.vl["PCM_CRUISE_2"]["SET_SPEED"] * CV.KPH_TO_MS
+      ret.cruiseState.speed = cp.vl["PCM_CRUISE_2"]["SET_SPEED"] * T_FACTOR * CV.KPH_TO_MS
 
     if self.CP.carFingerprint in TSS2_CAR:
       self.acc_type = 1
@@ -216,7 +218,9 @@ class CarState(CarStateBase):
         if self.CP.carFingerprint in TSS2_CAR:
           # KRKeegan - Add support for toyota distance button
           self.gap_adjust_cruise_tr = 1 if cp_cam.vl["ACC_CONTROL"]["DISTANCE"] == 1 else 0
-          ret.gapAdjustCruiseTr = cp.vl["PCM_CRUISE_SM"]["DISTANCE_LINES"]
+        elif self.CP.smartDsu:
+          self.distance_btn = 1 if cp.vl["SDSU"]["FD_BUTTON"] == 1 else 0    
+    ret.gapAdjustCruiseTr = cp.vl["PCM_CRUISE_SM"]["DISTANCE_LINES"]
 
     # Toyota 5/5 Speed Increments
     self.Fast_Speed_Increments = 2 if Params().get_bool('Change5speed') else 1
