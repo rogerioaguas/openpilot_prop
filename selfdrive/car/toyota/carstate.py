@@ -361,6 +361,7 @@ class CarState(CarStateBase):
     if CP.hasZss:
       signals += [("ZORRO_STEER", "SECONDARY_STEER_ANGLE", 0)]
       checks += [("SECONDARY_STEER_ANGLE", 0)]
+  
     # add gas interceptor reading if we are using it
     if CP.enableGasInterceptor:
       signals.append(("INTERCEPTOR_GAS", "GAS_SENSOR", 0))
@@ -382,6 +383,10 @@ class CarState(CarStateBase):
     if CP.carFingerprint in TSS2_CAR:
       signals.append(("DISTANCE_LINES", "PCM_CRUISE_SM", 0))
       checks.append(("PCM_CRUISE_SM", 1))
+
+    if CP.smartDsu:
+       signals.append(("FD_BUTTON", "SDSU", 0))
+       checks.append(("SDSU", 33))
 
     return CANParser(DBC[CP.carFingerprint]["pt"], signals, checks, 0)
 
