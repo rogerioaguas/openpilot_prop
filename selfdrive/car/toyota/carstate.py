@@ -12,7 +12,7 @@ from selfdrive.swaglog import cloudlog
 from common.realtime import DT_CTRL, sec_since_boot
 from common.params import Params
 
-T_FACTOR = 1.033
+T_FACTOR = 1.08
 
 class CarState(CarStateBase):
   def __init__(self, CP):
@@ -96,7 +96,7 @@ class CarState(CarStateBase):
       cp.vl["WHEEL_SPEEDS"]["WHEEL_SPEED_RL"],
       cp.vl["WHEEL_SPEEDS"]["WHEEL_SPEED_RR"],
     )
-    ret.vEgoRaw = mean([ret.wheelSpeeds.fl, ret.wheelSpeeds.fr, ret.wheelSpeeds.rl, ret.wheelSpeeds.rr])
+    ret.vEgoRaw = T_FACTOR * mean([ret.wheelSpeeds.fl, ret.wheelSpeeds.fr, ret.wheelSpeeds.rl, ret.wheelSpeeds.rr])
     ret.vEgo, ret.aEgo = self.update_speed_kf(ret.vEgoRaw)
 
     self.belowLaneChangeSpeed = ret.vEgo < (30 * CV.MPH_TO_MS)
@@ -219,8 +219,8 @@ class CarState(CarStateBase):
           # KRKeegan - Add support for toyota distance button
           self.gap_adjust_cruise_tr = 1 if cp_cam.vl["ACC_CONTROL"]["DISTANCE"] == 1 else 0
         elif self.CP.smartDsu:
-          self.distance_btn = 1 if cp.vl["SDSU"]["FD_BUTTON"] == 1 else 0    
-    ret.gapAdjustCruiseTr = cp.vl["PCM_CRUISE_SM"]["DISTANCE_LINES"]
+          self.gap_adjust_cruise_tr = 1 if cp.vl["SDSU"]["FD_BUTTON"] == 1 else 0    
+        ret.gapAdjustCruiseTr = cp.vl["PCM_CRUISE_SM"]["DISTANCE_LINES"]
 
     # Toyota 5/5 Speed Increments
     self.Fast_Speed_Increments = 2 if Params().get_bool('Change5speed') else 1
@@ -361,6 +361,7 @@ class CarState(CarStateBase):
     if CP.hasZss:
       signals += [("ZORRO_STEER", "SECONDARY_STEER_ANGLE", 0)]
       checks += [("SECONDARY_STEER_ANGLE", 0)]
+  
     # add gas interceptor reading if we are using it
     if CP.enableGasInterceptor:
       signals.append(("INTERCEPTOR_GAS", "GAS_SENSOR", 0))
@@ -382,6 +383,10 @@ class CarState(CarStateBase):
     if CP.carFingerprint in TSS2_CAR:
       signals.append(("DISTANCE_LINES", "PCM_CRUISE_SM", 0))
       checks.append(("PCM_CRUISE_SM", 1))
+
+    if CP.smartDsu:
+       signals.append(("FD_BUTTON", "SDSU", 0))
+       checks.append(("SDSU", 33))
 
     return CANParser(DBC[CP.carFingerprint]["pt"], signals, checks, 0)
 
