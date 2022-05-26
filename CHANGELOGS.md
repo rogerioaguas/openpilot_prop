@@ -1,4 +1,10 @@
-sunnypilot - Version 0.8.12-4 (2022-04-09)
+animalpilot - Version 0.8.12-4 (2022-05-26)
+========================
+* MELHORIA: Aceleração mais suave
+* CORREÇÃO: Agora a velocidade bate com a do o painel
+* CORREÇÃO: Agora a última velocidade máxima do ACC fica salva corretamente na tela
+ 
+ sunnypilot - Version 0.8.12-4 (2022-04-09)
 ========================
 * NEW❗: Roll Compensation and SteerRatio fix from comma's 0.8.13
 * NEW❗: Dev UI to display different metrics on screen
