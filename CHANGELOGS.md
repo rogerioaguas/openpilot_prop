@@ -1,4 +1,7 @@
-sunnypilot - Version 0.8.12-4 (2022-04-09)
+animalpilot - Version 0.8.12-4 (2022-05-28)
+========================
+* FIXED: No more annoying chime when ACC enabled and LKAS not, tks to @ntegan
+
 ========================
 * NEW❗: Roll Compensation and SteerRatio fix from comma's 0.8.13
 * NEW❗: Dev UI to display different metrics on screen
