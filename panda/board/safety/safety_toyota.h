@@ -290,7 +290,6 @@ static int toyota_tx_hook(CANPacket_t *to_send) {
           tx = 0;
         }
       }
-    }
   }
 
   return tx;
