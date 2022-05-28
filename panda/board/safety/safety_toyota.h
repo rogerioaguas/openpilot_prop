@@ -230,7 +230,6 @@ static int toyota_tx_hook(CANPacket_t *to_send) {
     if (addr == 0x2E4) {
       int desired_torque = (GET_BYTE(to_send, 1) << 8) | GET_BYTE(to_send, 2);
       desired_torque = to_signed(desired_torque, 16);
-      bool steer_req = GET_BIT(to_send, 0U) != 0U;
       bool violation = 0;
 
       uint32_t ts = microsecond_timer_get();
