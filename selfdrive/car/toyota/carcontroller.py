@@ -12,6 +12,10 @@ from selfdrive.car.toyota.interface import CarInterface
 from opendbc.can.packer import CANPacker
 VisualAlert = car.CarControl.HUDControl.VisualAlert
 
+# constants for fault workaround
+MAX_STEER_RATE = 100  # deg/s
+MAX_STEER_RATE_FRAMES = 19
+
 
 class CarController():
   def __init__(self, dbc_name, CP, VM):
@@ -26,6 +30,7 @@ class CarController():
     self.standstill_status = 0
     self.standstill_status_timer = 0
     self.CP = CP
+    self.steer_rate_counter = 0
 
     self.packer = CANPacker(dbc_name)
 
@@ -62,6 +67,14 @@ class CarController():
     apply_steer = apply_toyota_steer_torque_limits(new_steer, self.last_steer, CS.out.steeringTorqueEps, CarControllerParams)
     self.steer_rate_limited = False
 
+    # EPS_STATUS->LKA_STATE either goes to 21 or 25 on rising edge of a steering fault and
+    # the value seems to describe how many frames the steering rate was above 100 deg/s, so
+    # cut torque with some margin for the lower state
+    if CC.latActive and abs(CS.out.steeringRateDeg) >= MAX_STEER_RATE:
+      self.steer_rate_counter += 1
+    else:
+      self.steer_rate_counter = 0    
+
     cur_time = frame * DT_CTRL
     if CS.leftBlinkerOn or CS.rightBlinkerOn:
       self.signal_last = cur_time
@@ -69,7 +82,11 @@ class CarController():
     # Cut steering while we're in a known fault state (2s)
     if enabled and not CS.steer_not_allowed and CS.lkasEnabled and ((CS.automaticLaneChange and not CS.belowLaneChangeSpeed) or ((not ((cur_time - self.signal_last) < 1) or not CS.belowLaneChangeSpeed) and not (CS.leftBlinkerOn or CS.rightBlinkerOn))):
       self.steer_rate_limited = new_steer != apply_steer
-      apply_steer_req = 1
+      if self.steer_rate_counter >= MAX_STEER_RATE_FRAMES:
+        self.steer_rate_counter = 0
+        apply_steer_req = 0
+      else:
+        apply_steer_req = 1
     else:
       apply_steer = 0
       apply_steer_req = 0
