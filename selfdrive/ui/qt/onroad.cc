@@ -534,8 +534,8 @@ void OnroadHud::paintEvent(QPaintEvent *event) {
   }
 
   // current speed
-  configFont(p, "Open Sans", 176, "Bold");
-  drawSpeedText(p, rect().center().x(), 210, speed, is_brakelight_on ? QColor(0xff, 0, 0, 255) : QColor(0xff, 0xff, 0xff, 255));
+  configFont(p, "Open Sans", 210, "Bold");
+  drawSpeedText(p, rect().center().x(), 210, speed, is_brakelight_on ? QColor(0xff, 66, 66, 255) : QColor(0xff, 0xff, 0xff, 255));
   configFont(p, "Open Sans", 66, "Regular");
   drawText(p, rect().center().x(), 290, speedUnit, 200);
 
@@ -1145,7 +1145,7 @@ void NvgWindow::drawLaneLines(QPainter &painter, const UIScene &scene) {
       bg.setColorAt(1, QColor(255, 255, 255, 0));
     } else {
       bg.setColorAt(0, scene.lateralPlan.dynamicLaneProfileStatus ? redColor() : greenColor());
-      bg.setColorAt(1, scene.lateralPlan.dynamicLaneProfileStatus ? redColor(0) : greenColor(0));
+      bg.setColorAt(1, scene.lateralPlan.dynamicLaneProfileStatus ? redColor(0) : graceBlueColor(0));
     }
   } else {
     bg.setColorAt(0, QColor(255, 255, 255));

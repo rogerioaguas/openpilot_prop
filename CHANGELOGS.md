@@ -1,3 +1,10 @@
+AnimalPilot - Version 0.8.12-4 (2022-06-02)
+========================
+* FIXED: Consistency on Stop and Go hack in comma3 devices
+* NEW❗: INDI lateral tunning for Corollas TSS
+* NEW❗:Safety toggle to disable TSS2 Stop and Go hack
+* NEW❗:Color and visual indentity
+
 animalpilot - Version 0.8.12-4 (2022-05-28)
 ========================
 * FIXED: No more annoying chime when ACC enabled and LKAS not, tks to @ntegan
