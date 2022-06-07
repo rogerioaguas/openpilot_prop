@@ -62,16 +62,16 @@ def set_lat_tune(tune, name):
     tune.indi.actuatorEffectivenessBP = [0.]
     tune.indi.actuatorEffectivenessV = [1.0]
 
-  elif name == LatTunes.INDI_COROLLAS_TSS2:
+  elif name == LatTunes.INDI_COROLLAS_TSS2: # AtL's INDI Corolla TSS2 Tune v2.0 
     tune.init('indi')
     tune.indi.innerLoopGainBP = [0.]
-    tune.indi.innerLoopGainV = [15.0]
+    tune.indi.innerLoopGainV = [15]
     tune.indi.outerLoopGainBP = [0.]
-    tune.indi.outerLoopGainV = [14.99]
+    tune.indi.outerLoopGainV = [17]
     tune.indi.timeConstantBP = [0.]
     tune.indi.timeConstantV = [4.5]
     tune.indi.actuatorEffectivenessBP = [0.]
-    tune.indi.actuatorEffectivenessV = [15.0]
+    tune.indi.actuatorEffectivenessV = [15]
 
   elif name == LatTunes.LQR_RAV4:
     tune.init('lqr')
