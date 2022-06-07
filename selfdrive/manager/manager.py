@@ -51,7 +51,7 @@ def manager_init():
     ("EndToEndToggle", "1"),
     ("GapAdjustCruise", "0"),
     ("GapAdjustCruiseTr", "3"),
-    ("GithubUsername", "AlexandreSato"),
+    ("GithubUsername", "alexandresato"),
     ("GpxDeleteAfterUpload", "1"),
     ("GpxDeleteIfUploaded", "1"),
     ("HasAcceptedTerms", terms_version),
