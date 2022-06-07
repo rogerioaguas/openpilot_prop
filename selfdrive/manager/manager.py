@@ -43,6 +43,7 @@ def manager_init():
     ("CarModel", ""),
     ("Change5speed", "1"),
     ("CompletedTrainingVersion", training_version),
+    ("CommunityFeaturesToggle", "1"),
     ("DevUI", "2"),
     ("EnableMADS", "1"),
     ("DisableOnroadUploads", "0"),
