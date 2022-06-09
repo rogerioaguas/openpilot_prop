@@ -168,7 +168,7 @@ class CarInterface(CarInterfaceBase):
       ret.mass = 3060. * CV.LB_TO_KG + STD_CARGO_KG
       ret.wheelSpeedFactor = 1.09
       set_lat_tune(ret.lateralTuning, LatTunes.INDI_COROLLAS_TSS2)
-      ret.steerActuatorDelay = 0.41 #Only For INDI
+      ret.steerActuatorDelay = 0.22 #Only For INDI
       #set_lat_tune(ret.lateralTuning, LatTunes.PID_D)
 
     elif candidate in [CAR.LEXUS_ES_TSS2, CAR.LEXUS_ESH_TSS2]:
