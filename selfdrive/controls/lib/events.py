@@ -288,7 +288,7 @@ EVENTS: Dict[int, Dict[str, Union[Alert, AlertCallbackType]]] = {
   },
 
   EventName.startup: {
-    ET.PERMANENT: StartupAlert("AnimalPilot Initializado")
+    ET.PERMANENT: StartupAlert("AnimalPilot Inicializado")
   },
 
   EventName.startupMaster: {
