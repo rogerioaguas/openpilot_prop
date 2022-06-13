@@ -5,7 +5,7 @@ import email.utils as eut
 import time
 
 
-S3_LOCAL_OSM_URL = "https://s3.eu-central-1.amazonaws.com/files.as.osm/db.tar.gz"
+S3_LOCAL_OSM_URL = "https://download.geofabrik.de/south-america/brazil-latest.osm.bz2"
 OSM_DB_STAMP_FILE = "/data/osm/db_stamp"
 
 

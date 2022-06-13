@@ -12,7 +12,7 @@ export SOURCE_FILE_ROOT=osm-3s_v0.7.57
 export GZ_FILE=${SOURCE_FILE_ROOT}.tar.gz
 # export DB_DIR=/data/osm/db/
 
-# Download and extract overpass libary
+# Download and extract overpass library
 cd /data
 mkdir osm
 cd /data/osm
