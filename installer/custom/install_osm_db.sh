@@ -1,6 +1,7 @@
 export OSM_DIR=/data/osm
 export DB_DIR=${OSM_DIR}/db
-export GZ_MAP_FILE_NAME=south-america/brazil-latest.osm.bz2
+export GZ_MAP_FILE_AREA=south-america
+export GZ_MAP_FILE_NAME=brazil-latest.osm.bz2
 export GZ_MAP_FILE=${OSM_DIR}/${GZ_MAP_FILE_NAME}
 
 # Remove legacy compressed map file if existing
@@ -10,7 +11,7 @@ export GZ_MAP_FILE=${OSM_DIR}/${GZ_MAP_FILE_NAME}
 cd $OSM_DIR
 
 # Download map file
-wget https://download.geofabrik.de/south-america/brazil-latest.osm.bz2
+wget https://download.geofabrik.de/${GZ_MAP_FILE_AREA}/${GZ_MAP_FILE_NAME}
 
 if [[ "$?" != 0 ]]; then
   echo "Error downloading map file"
@@ -19,7 +20,7 @@ else
   # Remove current db dir if exisiting
   [ -f $DB_DIR ] && rm -rf $DB_DIR
   # Uncompress
-  nohup ../src/bin/init_osm3s.sh brazil-latest.osm.bz2 $DB_DIR $EXEC_DIR --meta & tail -f nohup.out
+  nohup ../src/bin/init_osm3s.sh $GZ_MAP_FILE_NAME $DB_DIR $EXEC_DIR --meta & tail -f nohup.out
   # Remove compressed map files after expanding
-  rm -rf brazil-latest.osm.bz2
+  rm -rf $GZ_MAP_FILE_NAME
 fi
