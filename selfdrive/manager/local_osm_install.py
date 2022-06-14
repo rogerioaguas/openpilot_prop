@@ -45,7 +45,7 @@ def install_osm_db(spinner, steps=0, total_steps=INSTALL_DB_STEPS):
       print(output.decode('utf8', 'replace'))
 
 
-if __name__ == "__main__":
+if __name__ == "__main__" and TICI:
   if wait_for_internet_connection(return_on_failure=True):
     is_osm_installed = is_local_osm_installed()
     is_db_updated = is_osm_db_up_to_date()
