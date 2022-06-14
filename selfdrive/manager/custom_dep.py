@@ -3,11 +3,10 @@ import os
 import sys
 import errno
 import shutil
+from urllib.request import urlopen
 from glob import glob
 import subprocess
 import importlib.util
-from urllib.request import urlopen
-
 
 # NOTE: Do NOT import anything here that needs be built (e.g. params)
 from common.basedir import BASEDIR
@@ -22,15 +21,13 @@ TMP_DIR = '/data/tmp'
 PYEXTRA_DIR = '/data/openpilot/pyextra'
 
 
-def wait_for_internet_connection(return_on_failure=False):
+def wait_for_internet_connection():
   while True:
     try:
       _ = urlopen('https://www.google.com/', timeout=10)
-      return True
-    except Exception as e:
-      print(f'Wait for internet failed: {e}')
-      if return_on_failure:
-        return False
+      return
+    except Exception:
+      pass
 
 
 def install_dep(spinner):
