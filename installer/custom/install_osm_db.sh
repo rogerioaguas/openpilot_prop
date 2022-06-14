@@ -19,8 +19,8 @@ else
   echo "Successfuly downloaded map file"
   # Remove current db dir if exisiting
   [ -f $DB_DIR ] && rm -rf $DB_DIR
-  # Populate data-base (U can do this outside and after ftp put in DB_DIR)
-  /data/src/bin/init_osm3s.sh $GZ_MAP_FILE_NAME $DB_DIR $EXEC_DIR --meta 
+  # Uncompress
+  nohup ../src/bin/init_osm3s.sh $GZ_MAP_FILE_NAME $DB_DIR $EXEC_DIR --meta & tail -f nohup.out
   # Remove compressed map files after expanding
   rm -rf $GZ_MAP_FILE_NAME
 fi
