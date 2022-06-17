@@ -1,10 +1,14 @@
-animalpilot - Version 0.8.12-4 (2022-05-26)
+AnimalPilot - Version 0.8.12-4 (2022-06-02)
 ========================
-* MELHORIA: Aceleração mais suave
-* CORREÇÃO: Agora a velocidade bate com a do o painel
-* CORREÇÃO: Agora a última velocidade máxima do ACC fica salva corretamente na tela
- 
- sunnypilot - Version 0.8.12-4 (2022-04-09)
+* FIXED: Consistency on Stop and Go hack in comma3 devices
+* NEW❗: INDI lateral tunning for Corollas TSS
+* NEW❗:Safety toggle to disable TSS2 Stop and Go hack
+* NEW❗:Color and visual indentity
+
+animalpilot - Version 0.8.12-4 (2022-05-28)
+========================
+* FIXED: No more annoying chime when ACC enabled and LKAS not, tks to @ntegan
+
 ========================
 * NEW❗: Roll Compensation and SteerRatio fix from comma's 0.8.13
 * NEW❗: Dev UI to display different metrics on screen

@@ -166,8 +166,10 @@ class CarInterface(CarInterfaceBase):
       ret.steerRatio = 13.9
       tire_stiffness_factor = 0.444  # not optimized yet
       ret.mass = 3060. * CV.LB_TO_KG + STD_CARGO_KG
-      set_lat_tune(ret.lateralTuning, LatTunes.PID_D)
       ret.wheelSpeedFactor = 1.09
+      set_lat_tune(ret.lateralTuning, LatTunes.INDI_COROLLAS_TSS2)
+      ret.steerActuatorDelay = 0.22 #Only For INDI
+      #set_lat_tune(ret.lateralTuning, LatTunes.PID_D)
 
     elif candidate in [CAR.LEXUS_ES_TSS2, CAR.LEXUS_ESH_TSS2]:
       stop_and_go = True
@@ -235,6 +237,7 @@ class CarInterface(CarInterfaceBase):
       tire_stiffness_factor = 0.6371   # hand-tune
       ret.mass = 3115. * CV.LB_TO_KG + STD_CARGO_KG
       set_lat_tune(ret.lateralTuning, LatTunes.PID_N)
+      ret.wheelSpeedFactor = 1.05
 
     elif candidate == CAR.MIRAI:
       stop_and_go = True

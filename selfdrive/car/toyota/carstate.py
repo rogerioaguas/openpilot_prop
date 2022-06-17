@@ -208,7 +208,7 @@ class CarState(CarStateBase):
       ret.cruiseState.speed = cp.vl["PCM_CRUISE_2"]["SET_SPEED"] * self.CP.wheelSpeedFactor * CV.KPH_TO_MS
 
     if self.CP.carFingerprint in TSS2_CAR:
-      self.acc_type = 1
+      self.acc_type = 1 if Params().get_bool('StopAndGoHack') else cp_cam.vl["ACC_CONTROL"]["ACC_TYPE"]
 
     if self.CP.carFingerprint in TSS2_CAR:
       if self.gap_adjust_cruise:

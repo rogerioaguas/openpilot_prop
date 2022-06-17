@@ -24,6 +24,7 @@ class LatTunes(Enum):
   PID_L = 13
   PID_M = 14
   PID_N = 15
+  INDI_COROLLAS_TSS2 = 16
 
 
 ###### LONG ######
@@ -60,6 +61,18 @@ def set_lat_tune(tune, name):
     tune.indi.timeConstantV = [0.1]
     tune.indi.actuatorEffectivenessBP = [0.]
     tune.indi.actuatorEffectivenessV = [1.0]
+
+  # birdman6450#7399's Corolla 2020 TSS2 Tune
+  elif name == LatTunes.INDI_COROLLAS_TSS2:
+    tune.init('indi')
+    tune.indi.innerLoopGainBP = [18, 22, 26]
+    tune.indi.innerLoopGainV = [9, 12, 15]
+    tune.indi.outerLoopGainBP = [18, 22, 26]
+    tune.indi.outerLoopGainV = [8, 11, 14.99]
+    tune.indi.timeConstantBP = [18, 22, 26]
+    tune.indi.timeConstantV = [1, 3, 4.5]
+    tune.indi.actuatorEffectivenessBP = [18, 22, 26]
+    tune.indi.actuatorEffectivenessV = [9, 12, 15]
 
   elif name == LatTunes.LQR_RAV4:
     tune.init('lqr')

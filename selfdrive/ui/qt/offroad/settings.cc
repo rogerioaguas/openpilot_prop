@@ -364,7 +364,7 @@ SettingsWindow::SettingsWindow(QWidget *parent) : QFrame(parent) {
     {"Network", network_panel(this)},
     {"Toggles", new TogglesPanel(this)},
     {"Software", new SoftwarePanel(this)},
-    {"sunnypilot", new SunnypilotPanel(this)},
+    {"AnimalPilot", new SunnypilotPanel(this)},
   };
 
 #ifdef ENABLE_MAPS
@@ -491,6 +491,12 @@ SunnypilotPanel::SunnypilotPanel(QWidget* parent) : QWidget(parent) {
   )");
 
   QList<ParamControl*> toggles;
+
+  toggles.append(new ParamControl("StopAndGoHack",
+                                  "Enable SnG TSS2 hack",
+                                  "DANGER! only activate if your car is TSS2 And do not stop and go",
+                                  "../assets/offroad/icon_warning.png",
+                                  this));
 
   toggles.append(new ParamControl("Change5speed",
                                   "Change 5 speed",

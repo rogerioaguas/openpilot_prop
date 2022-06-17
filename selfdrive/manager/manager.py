@@ -42,7 +42,8 @@ def manager_init():
     ("CameraOffset", "0"),
     ("CarModel", ""),
     ("Change5speed", "1"),
-    ("CompletedTrainingVersion", "0"),
+    ("CompletedTrainingVersion", training_version),
+    ("CommunityFeaturesToggle", "1"),
     ("DevUI", "2"),
     ("EnableMADS", "1"),
     ("DisableOnroadUploads", "0"),
@@ -50,9 +51,10 @@ def manager_init():
     ("EndToEndToggle", "1"),
     ("GapAdjustCruise", "0"),
     ("GapAdjustCruiseTr", "3"),
+    ("GithubUsername", "alexandresato"),
     ("GpxDeleteAfterUpload", "1"),
     ("GpxDeleteIfUploaded", "1"),
-    ("HasAcceptedTerms", "0"),
+    ("HasAcceptedTerms", terms_version),
     ("HandsOnWheelMonitoring", "0"),
     ("IsMetric", "1"),
     ("MaxTimeOffroad", "12"),
@@ -64,8 +66,10 @@ def manager_init():
     ("ShowDebugUI", "1"),
     ("SpeedLimitControl", "1"),
     ("SpeedLimitPercOffset", "1"),
+    ("StopAndGoHack", "1"),
     ("TurnSpeedControl", "1"),
     ("TurnVisionControl", "1"),
+    ("UploadRaw", "1"),
   ]
   if not PC:
     default_params.append(("LastUpdateTime", datetime.datetime.utcnow().isoformat().encode('utf8')))

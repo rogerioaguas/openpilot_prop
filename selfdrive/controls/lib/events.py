@@ -157,7 +157,7 @@ class SoftDisableAlert(Alert):
 class UserSoftDisableAlert(SoftDisableAlert):
   def __init__(self, alert_text_2):
     super().__init__(alert_text_2),
-    self.alert_text_1 = "openpilot irá desengatar"
+    self.alert_text_1 = "openpilot irá desacionar"
 
 
 class ImmediateDisableAlert(Alert):
@@ -288,7 +288,7 @@ EVENTS: Dict[int, Dict[str, Union[Alert, AlertCallbackType]]] = {
   },
 
   EventName.startup: {
-    ET.PERMANENT: StartupAlert("sunnypilot Initialized")
+    ET.PERMANENT: StartupAlert("AnimalPilot Inicializado")
   },
 
   EventName.startupMaster: {
@@ -330,7 +330,7 @@ EVENTS: Dict[int, Dict[str, Union[Alert, AlertCallbackType]]] = {
   # detects the use of a community feature it switches to dashcam mode
   # until these features are allowed using a toggle in settings.
   EventName.communityFeatureDisallowed: {
-    ET.PERMANENT: NormalPermanentAlert("openpilot Unavailable",
+    ET.PERMANENT: NormalPermanentAlert("openpilot Indisponível",
                                        "Enable Community Features in Settings"),
   },
 
@@ -355,7 +355,7 @@ EVENTS: Dict[int, Dict[str, Union[Alert, AlertCallbackType]]] = {
   EventName.fcw: {
     ET.PERMANENT: Alert(
       "FREIE!",
-      "Risco de Colisão",
+      "Perigo de Colisão",
       AlertStatus.critical, AlertSize.full,
       Priority.HIGHEST, VisualAlert.fcw, AudibleAlert.warningSoft, 2.),
   },
@@ -393,7 +393,7 @@ EVENTS: Dict[int, Dict[str, Union[Alert, AlertCallbackType]]] = {
 
   EventName.steerTempUnavailableSilent: {
     ET.WARNING: Alert(
-      "Direção temporariamente indisponível",
+      "Direção Temporariamente Indisponível",
       "",
       AlertStatus.userPrompt, AlertSize.small,
       Priority.LOW, VisualAlert.steerRequired, AudibleAlert.prompt, 1.),
@@ -417,8 +417,8 @@ EVENTS: Dict[int, Dict[str, Union[Alert, AlertCallbackType]]] = {
 
   EventName.driverDistracted: {
     ET.WARNING: Alert(
-      "DESENGATAR IMEDIATAMENTE",
-      "Motorista distraído",
+      "DESACIONAMENTO IMEDIATO",
+      "Motorista Distraído",
       AlertStatus.critical, AlertSize.full,
       Priority.HIGH, VisualAlert.steerRequired, AudibleAlert.warningImmediate, .1),
   },
@@ -434,15 +434,15 @@ EVENTS: Dict[int, Dict[str, Union[Alert, AlertCallbackType]]] = {
   EventName.promptDriverUnresponsive: {
     ET.WARNING: Alert(
       "Toque o Volante",
-      "Motorista sem resposta",
+      "Motorista sem Resposta",
       AlertStatus.userPrompt, AlertSize.mid,
       Priority.MID, VisualAlert.steerRequired, AudibleAlert.promptDistracted, .1),
   },
 
   EventName.driverUnresponsive: {
     ET.WARNING: Alert(
-      "DESENGATAR IMEDIATAMENTE",
-      "Motorista sem resposta",
+      "DESACIONAMENTO IMEDIATO",
+      "Motorista sem Resposta",
       AlertStatus.critical, AlertSize.full,
       Priority.HIGH, VisualAlert.steerRequired, AudibleAlert.warningImmediate, .1),
   },
@@ -489,7 +489,7 @@ EVENTS: Dict[int, Dict[str, Union[Alert, AlertCallbackType]]] = {
 
   EventName.preLaneChangeLeft: {
     ET.WARNING: Alert(
-      "Direção à Esquerda para Mudança Segura de Faixa",
+      "Direção a Esquerda para Mudança Segura de Faixa",
       "",
       AlertStatus.normal, AlertSize.small,
       Priority.LOW, VisualAlert.none, AudibleAlert.none, .1, alert_rate=0.75),
@@ -497,7 +497,7 @@ EVENTS: Dict[int, Dict[str, Union[Alert, AlertCallbackType]]] = {
 
   EventName.preLaneChangeRight: {
     ET.WARNING: Alert(
-      "Direção à Direita para Mudança segura de faixa",
+      "Direção a Direita para Mudança segura de faixa",
       "",
       AlertStatus.normal, AlertSize.small,
       Priority.LOW, VisualAlert.none, AudibleAlert.none, .1, alert_rate=0.75),
@@ -522,14 +522,14 @@ EVENTS: Dict[int, Dict[str, Union[Alert, AlertCallbackType]]] = {
   EventName.manualSteeringRequired: {
     ET.WARNING: Alert(
       "MADS está DESLIGADO",
-      "Direção manual necessária",
+      "Direção Manual necessária",
       AlertStatus.normal, AlertSize.mid,
       Priority.LOW, VisualAlert.none, AudibleAlert.disengage, 2.),
   },
 
   EventName.manualLongitudinalRequired: {
     ET.WARNING: Alert(
-      "Cruzeiro Adaptativo DESLIGADO",
+      "CRUZEIRO ADAPTATIVO DESLIGADO",
       "Acelerador e freios manuais necessários",
       AlertStatus.normal, AlertSize.mid,
       Priority.LOW, VisualAlert.none, AudibleAlert.none, 2.),
@@ -538,7 +538,7 @@ EVENTS: Dict[int, Dict[str, Union[Alert, AlertCallbackType]]] = {
   EventName.steerSaturated: {
     ET.WARNING: Alert(
       "Assuma o Controle",
-      "Curva excede o limite de direção",
+      "Curva Excede os Limites de Direção",
       AlertStatus.userPrompt, AlertSize.mid,
       Priority.LOW, VisualAlert.steerRequired, AudibleAlert.promptRepeat, 1.),
   },
@@ -567,7 +567,7 @@ EVENTS: Dict[int, Dict[str, Union[Alert, AlertCallbackType]]] = {
 
   EventName.speedLimitActive: {
     ET.WARNING: Alert(
-      "Cruise set to speed limit",
+      "Cruzeiro ajustado para limite de velocidade",
       "",
       AlertStatus.normal, AlertSize.small,
       Priority.LOW, VisualAlert.none, AudibleAlert.none, 2.),
@@ -605,7 +605,7 @@ EVENTS: Dict[int, Dict[str, Union[Alert, AlertCallbackType]]] = {
 
   EventName.brakeHold: {
     ET.USER_DISABLE: EngagementAlert(AudibleAlert.disengage),
-    ET.NO_ENTRY: NoEntryAlert("Brake Hold Active"),
+    ET.NO_ENTRY: NoEntryAlert("Brake Hold Ativo"),
   },
 
   EventName.silentBrakeHold: {
@@ -614,7 +614,7 @@ EVENTS: Dict[int, Dict[str, Union[Alert, AlertCallbackType]]] = {
       "",
       AlertStatus.normal, AlertSize.none,
       Priority.MID, VisualAlert.none, AudibleAlert.none, .2),
-    ET.NO_ENTRY: NoEntryAlert("Brake Hold Active"),
+    ET.NO_ENTRY: NoEntryAlert("Brake Hold Ativo"),
   },
 
   EventName.parkBrake: {
@@ -681,13 +681,13 @@ EVENTS: Dict[int, Dict[str, Union[Alert, AlertCallbackType]]] = {
   },
 
   EventName.tooDistracted: {
-    ET.NO_ENTRY: NoEntryAlert("Nível de distração muito alto"),
+    ET.NO_ENTRY: NoEntryAlert("Nível de Distração Muito Alto"),
   },
 
   EventName.overheat: {
-    ET.PERMANENT: NormalPermanentAlert("Sistema superaquecido"),
-    ET.SOFT_DISABLE: soft_disable_alert("Sistema superaquecido"),
-    ET.NO_ENTRY: NoEntryAlert("Sistema superaquecido"),
+    ET.PERMANENT: NormalPermanentAlert("Sistema Superaquecido"),
+    ET.SOFT_DISABLE: soft_disable_alert("Sistema Superaquecido"),
+    ET.NO_ENTRY: NoEntryAlert("Sistema Superaquecido"),
   },
 
   EventName.wrongGear: {
