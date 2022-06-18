@@ -189,6 +189,20 @@ static void update_state(UIState *s) {
 
     scene.lateralPlan.dynamicLaneProfileStatus = data.getDynamicLaneProfile();
   }
+  if (sm.updated("carState")) {
+    auto cs_data = sm["carState"].getCarState();
+
+    if (scene.leftBlinker!=cs_data.getLeftBlinker() || scene.rightBlinker!=cs_data.getRightBlinker()) {
+      scene.blinker_blinkingrate = 120;
+    }
+    if (scene.leftBlinker || scene.rightBlinker) {
+      scene.blinker_blinkingrate -= 5;
+      if(scene.blinker_blinkingrate < 0) scene.blinker_blinkingrate = 120;
+    }    
+
+    scene.leftBlinker = cs_data.getLeftBlinker();
+    scene.rightBlinker = cs_data.getRightBlinker();
+  }
 }
 
 void ui_update_params(UIState *s) {

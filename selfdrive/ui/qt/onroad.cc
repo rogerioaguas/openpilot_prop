@@ -504,9 +504,13 @@ void OnroadHud::updateState(const UIState &s) {
 
   setProperty("standStill", carState.getStandStill());
   setProperty("standstillElapsedTime", sm["lateralPlan"].getLateralPlan().getStandstillElapsed());
+  setProperty("left_blinker", s.scene.leftBlinker);
+  setProperty("right_blinker", s.scene.rightBlinker);
+  setProperty("blinker_rate", s.scene.blinker_blinkingrate);
 }
 
 void OnroadHud::paintEvent(QPaintEvent *event) {
+  UIState *s = &QUIState::ui_state;
   QPainter p(this);
   p.setRenderHint(QPainter::Antialiasing);
 
@@ -601,6 +605,59 @@ void OnroadHud::paintEvent(QPaintEvent *event) {
       drawRightDevUi(p, rect().right() - 184 - bdr_s * 2, bdr_s * 2 + rc2.height());
       drawRightDevUi2(p, rect().right() - 184 - bdr_s * 2 - 184, bdr_s * 2 + rc2.height());
       drawRightDevUiBorder(p, rect().right() - 184 - bdr_s * 2 - 184, bdr_s * 2 + rc2.height());
+    }
+  }
+
+  // opkr blinker
+  if ( /* !comma_stock_ui */ true) {
+    float bw = 0;
+    float bx = 0;
+    float bh = 0;
+    if (left_blinker) {
+      bw = 250;
+      bx = s->fb_w/2 - bw/2;
+      bh = 400;
+      QPointF leftbsign1[] = {{bx, bh/4}, {bx-bw/4, bh/4}, {bx-bw/2, bh/2}, {bx-bw/4, bh/4+bh/2}, {bx, bh/4+bh/2}, {bx-bw/4, bh/2}};
+      bx -= 125;
+      QPointF leftbsign2[] = {{bx, bh/4}, {bx-bw/4, bh/4}, {bx-bw/2, bh/2}, {bx-bw/4, bh/4+bh/2}, {bx, bh/4+bh/2}, {bx-bw/4, bh/2}};
+      bx -= 125;
+      QPointF leftbsign3[] = {{bx, bh/4}, {bx-bw/4, bh/4}, {bx-bw/2, bh/2}, {bx-bw/4, bh/4+bh/2}, {bx, bh/4+bh/2}, {bx-bw/4, bh/2}};
+
+      if (blinker_rate<=120 && blinker_rate>=60) {
+        p.setBrush(yellowColor(70));
+        p.drawPolygon(leftbsign1, std::size(leftbsign1));
+      }
+      if (blinker_rate<=100 && blinker_rate>=60) {
+        p.setBrush(yellowColor(140));
+        p.drawPolygon(leftbsign2, std::size(leftbsign2));
+      }
+      if (blinker_rate<=80 && blinker_rate>=60) {
+        p.setBrush(yellowColor(210));
+        p.drawPolygon(leftbsign3, std::size(leftbsign3));
+      }
+    }
+    if (right_blinker) {
+      bw = 250;
+      bx = s->fb_w/2 - bw/2 + bw;
+      bh = 400;
+      QPointF rightbsign1[] = {{bx, bh/4}, {bx+bw/4, bh/4}, {bx+bw/2, bh/2}, {bx+bw/4, bh/4+bh/2}, {bx, bh/4+bh/2}, {bx+bw/4, bh/2}};
+      bx += 125;
+      QPointF rightbsign2[] = {{bx, bh/4}, {bx+bw/4, bh/4}, {bx+bw/2, bh/2}, {bx+bw/4, bh/4+bh/2}, {bx, bh/4+bh/2}, {bx+bw/4, bh/2}};
+      bx += 125;
+      QPointF rightbsign3[] = {{bx, bh/4}, {bx+bw/4, bh/4}, {bx+bw/2, bh/2}, {bx+bw/4, bh/4+bh/2}, {bx, bh/4+bh/2}, {bx+bw/4, bh/2}};
+
+      if (blinker_rate<=120 && blinker_rate>=60) {
+        p.setBrush(yellowColor(70));
+        p.drawPolygon(rightbsign1, std::size(rightbsign1));
+      }
+      if (blinker_rate<=100 && blinker_rate>=60) {
+        p.setBrush(yellowColor(140));
+        p.drawPolygon(rightbsign2, std::size(rightbsign2));
+      }
+      if (blinker_rate<=80 && blinker_rate>=60) {
+        p.setBrush(yellowColor(210));
+        p.drawPolygon(rightbsign3, std::size(rightbsign3));
+      }
     }
   }
 }

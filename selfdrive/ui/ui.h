@@ -143,6 +143,9 @@ typedef struct UIScene {
   } lateralPlan;
 
   int dev_ui_enabled;
+  bool leftBlinker;
+  bool rightBlinker;  
+  int blinker_blinkingrate;
 } UIScene;
 
 typedef struct UIState {

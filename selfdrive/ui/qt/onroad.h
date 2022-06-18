@@ -83,10 +83,17 @@ Q_PROPERTY(QString roadName MEMBER roadName NOTIFY valueChanged);
 
   Q_PROPERTY(bool standStill MEMBER standStill NOTIFY valueChanged);
   Q_PROPERTY(int standstillElapsedTime MEMBER standstillElapsedTime NOTIFY valueChanged);
+  Q_PROPERTY(bool left_blinker MEMBER left_blinker NOTIFY valueChanged);
+  Q_PROPERTY(bool right_blinker MEMBER right_blinker NOTIFY valueChanged);
+  Q_PROPERTY(int blinker_rate MEMBER blinker_rate NOTIFY valueChanged);
+
 
 public:
   explicit OnroadHud(QWidget *parent);
   void updateState(const UIState &s);
+
+protected:
+  inline QColor yellowColor(int alpha = 255) { return QColor(218, 202, 37, alpha); }
 
 private:
   void drawIcon(QPainter &p, int x, int y, QPixmap &img, QBrush bg, float opacity);
@@ -173,6 +180,9 @@ private:
 
   bool standStill;
   int standstillElapsedTime;
+  bool left_blinker = false;
+  bool right_blinker = false;
+  int blinker_rate = 120;
 
 signals:
   void valueChanged();
