@@ -1,3 +1,10 @@
+AnimalPilot - Version 0.8.12-4 (2022-06-18)
+========================
+* NEW❗: Nice onroad blinker indicator
+* IMPROVED: Mapd optimized disponibility when connection loss
+* IMPROVED: Corolla lateral tune
+* IMPROVED: longitudinal tune
+
 AnimalPilot - Version 0.8.12-4 (2022-06-02)
 ========================
 * FIXED: Consistency on Stop and Go hack in comma3 devices
