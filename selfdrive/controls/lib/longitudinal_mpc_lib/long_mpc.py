@@ -34,8 +34,8 @@ X_EGO_OBSTACLE_COST = 3.
 X_EGO_COST = 0.
 V_EGO_COST = 0.
 A_EGO_COST = 0.
-J_EGO_COST = 4.0
-A_CHANGE_COST = .25
+J_EGO_COST = 2.0
+A_CHANGE_COST = .125
 DANGER_ZONE_COST = 100.
 CRASH_DISTANCE = .5
 LIMIT_COST = 1e6
@@ -282,7 +282,7 @@ class LongitudinalMpc():
       self.solver.cost_set(i, 'Zl', Zl)
 
   def set_weights_for_xva_policy(self):
-    W = np.asfortranarray(np.diag([0., 0.2, 0.25, 1., 0.0, .1]))
+    W = np.asfortranarray(np.diag([0, 10, 1, 10, 0, 1]))
     for i in range(N):
       self.solver.cost_set(i, 'W', W)
     # Setting the slice without the copy make the array not contiguous,
