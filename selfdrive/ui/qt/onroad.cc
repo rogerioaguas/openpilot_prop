@@ -1123,7 +1123,7 @@ void OnroadHud::drawStandstillTimer(QPainter &p, int x, int y) {
   second = (int)((standstillElapsedTime) - (minute * 60));
 
   if (standStill) {
-    snprintf(lab_str, sizeof(lab_str), (minute > 0 || second > 4)? "STOPPED" : "STOP");
+    snprintf(lab_str, sizeof(lab_str), "STOP");
     snprintf(val_str, sizeof(val_str), "%01d:%02d", minute, second);
   }
 
