@@ -34,7 +34,7 @@ X_EGO_OBSTACLE_COST = 3.
 X_EGO_COST = 0.
 V_EGO_COST = 0.
 A_EGO_COST = 0.
-J_EGO_COST = 2.0
+J_EGO_COST = 5.0
 A_CHANGE_COST = .125
 DANGER_ZONE_COST = 100.
 CRASH_DISTANCE = .5
@@ -52,7 +52,7 @@ T_DIFFS = np.diff(T_IDXS, prepend=[0.])
 MIN_ACCEL = -3.5
 T_FOLLOW = 1.45
 COMFORT_BRAKE = 2.5
-STOP_DISTANCE = 5.5
+STOP_DISTANCE = 5
 
 def get_stopped_equivalence_factor(v_lead, v_ego, tr=T_FOLLOW):
   # KRKeegan this offset rapidly decreases the following distance when the lead pulls

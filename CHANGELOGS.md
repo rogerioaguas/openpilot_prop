@@ -1,3 +1,9 @@
+AnimalPilot - Version 0.8.12-4 (2022-06-30)
+========================
+* IMPROVED: Increased steering torque
+* IMPROVED: Increased blinker rate
+* IMPROVED: Less harsh braking
+
 AnimalPilot - Version 0.8.12-4 (2022-06-18)
 ========================
 * NEW❗: Nice onroad blinker indicator
