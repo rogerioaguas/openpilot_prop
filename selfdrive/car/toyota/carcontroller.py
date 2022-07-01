@@ -51,7 +51,7 @@ class CarController():
       boost = 0
     else:
       interceptor_gas_cmd = 0.
-      start_boost = interp(CS.out.vEgo, [0, 2.3, 4.6], [.3, .3, 0])
+      start_boost = interp(CS.out.vEgo, [0, 2.3, 4.6], [.5, .3, 0])
       is_accelerating = interp(actuators.accel, [0, .2], [0, 1])
       boost = start_boost * is_accelerating
     pid_accel_limits = CarInterface.get_pid_accel_limits(self.CP, CS.out.vEgo, None) # Need to get cruise speed from somewhere
