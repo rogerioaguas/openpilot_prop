@@ -22,9 +22,9 @@ int main(int argc, char *argv[]) {
     QSslConfiguration::setDefaultConfiguration(ssl);
   }
 
-  isStartedHostSpot= Params().getBool("StartWithHotSpot");
-  wifi = new WifiManager(this);
-  wifi->setTetheringEnabled(enabled);
+//  isStartedHostSpot= Params().getBool("StartWithHotSpot");
+//  wifi = new WifiManager(this);
+//  wifi->setTetheringEnabled(enabled);
 
   QApplication a(argc, argv);
   MainWindow w;
