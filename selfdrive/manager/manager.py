@@ -42,6 +42,7 @@ def manager_init():
     ("CameraOffset", "0"),
     ("CarModel", ""),
     ("Change5speed", "1"),
+    ("StartWithHotSpot", "0"),
     ("CompletedTrainingVersion", training_version),
     ("CommunityFeaturesToggle", "1"),
     ("DevUI", "2"),

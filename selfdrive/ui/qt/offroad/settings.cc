@@ -504,6 +504,12 @@ SunnypilotPanel::SunnypilotPanel(QWidget* parent) : QWidget(parent) {
                                   "../assets/offroad/icon_speed_limit.png",
                                   this));
 
+  toggles.append(new ParamControl("StartWithHotSpot",
+                                  "Start With HotSpot",
+                                  "Start OpenPilot With HotSpot",
+                                  "../assets/offroad/icon_network.png",
+                                  this));
+
   toggles.append(new ParamControl("QuietDrive",
                                   "Quiet Drive 🤫",
                                   "openpilot will display alerts but only play the most important warning sounds. This feature can be toggled while the car is on.",

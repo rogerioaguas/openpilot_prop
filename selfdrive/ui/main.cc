@@ -7,6 +7,8 @@
 #include "selfdrive/ui/qt/qt_window.h"
 #include "selfdrive/ui/qt/util.h"
 #include "selfdrive/ui/qt/window.h"
+#include "selfdrive/common/params.h"
+#include "selfdrive/ui/qt/offroad/networking.h"
 
 int main(int argc, char *argv[]) {
   setpriority(PRIO_PROCESS, 0, -20);
@@ -19,6 +21,10 @@ int main(int argc, char *argv[]) {
     ssl.setCaCertificates(QSslCertificate::fromPath("/usr/etc/tls/cert.pem"));
     QSslConfiguration::setDefaultConfiguration(ssl);
   }
+
+  isStartedHostSpot= Params().getBool("StartWithHotSpot");
+  wifi = new WifiManager(this);
+  wifi->setTetheringEnabled(enabled);
 
   QApplication a(argc, argv);
   MainWindow w;
