@@ -46,7 +46,6 @@ signals:
 
 public slots:
   void toggleTethering(bool enabled);
-  void startWithTethering();
   void refresh();
 };
 

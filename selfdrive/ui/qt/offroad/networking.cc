@@ -191,11 +191,6 @@ void AdvancedNetworking::toggleTethering(bool enabled) {
   tetheringToggle->setEnabled(false);
 }
 
-void AdvancedNetworking::startWithTethering(){
-  bool isStartedHostSpot= Params().getBool("StartWithHotSpot");
-  wifi->setTetheringEnabled(enabled);
-}
-
 // WifiUI functions
 
 WifiUI::WifiUI(QWidget *parent, WifiManager* wifi) : QWidget(parent), wifi(wifi) {
