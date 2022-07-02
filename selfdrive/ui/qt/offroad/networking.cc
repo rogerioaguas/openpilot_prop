@@ -191,8 +191,8 @@ void AdvancedNetworking::toggleTethering(bool enabled) {
   tetheringToggle->setEnabled(false);
 }
 
-void startWithTethering(){
-  isStartedHostSpot= Params().getBool("StartWithHotSpot");
+void AdvancedNetworking::startWithTethering(){
+  bool isStartedHostSpot= Params().getBool("StartWithHotSpot");
   wifi->setTetheringEnabled(enabled);
 }
 

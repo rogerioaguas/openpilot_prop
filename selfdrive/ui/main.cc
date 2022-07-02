@@ -25,7 +25,7 @@ int main(int argc, char *argv[]) {
   QApplication a(argc, argv);
   MainWindow w;
   setMainWindow(&w);
-  startWithTethering();
+  AdvancedNetworking::startWithTethering();
   a.installEventFilter(&w);
   return a.exec();
 }
